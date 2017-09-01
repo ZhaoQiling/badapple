@@ -16,7 +16,6 @@ public class ImageProcess {
 	private final Double perB = 0.11;
 	
 	private static int colorToRGB(int alpha, int red, int green, int blue) {
-
 		int newPixel = 0;
 		newPixel += alpha;
 		newPixel = newPixel << 8;
@@ -25,7 +24,6 @@ public class ImageProcess {
 		newPixel += green;
 		newPixel = newPixel << 8;
 		newPixel += blue;
-		
 		return newPixel;
 }
 	public ImageProcess(File file) {
@@ -38,7 +36,12 @@ public class ImageProcess {
 		weight = img.getWidth();
 		imgType = img.getType();
 	}
-	
+	public ImageProcess(BufferedImage img) {
+		this.img = img;
+		height = img.getHeight();
+		weight = img.getWidth();
+		imgType = img.getType();
+	}
 	public BufferedImage getGreyImg() {
 		BufferedImage greyImg = new BufferedImage(weight, height, imgType);
 		for(int x = 0; x < weight; x++)
@@ -53,15 +56,7 @@ public class ImageProcess {
 		return greyImg;
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		try {
-			BufferedImage bfimg = new ImageProcess(new File(".\\res\\lenna.jpg")).getGreyImg();
-			File outputfile = new File(".\\out\\out.jpg");
-			ImageIO.write(bfimg, "jpg", outputfile);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 		
 	}
 
